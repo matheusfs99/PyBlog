@@ -26,5 +26,6 @@ urlpatterns = [
     path('cadastro/', views.cadastrar_user),
     path('cadastro/submit', views.submit_cadastro_user),
     path('minha_pagina/', views.minha_pagina),
+    path('escrever_publicacao/', views.escrever_publicacao),
 
 ]

@@ -3,6 +3,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .forms import *
 
 # Create your views here.
 
@@ -54,5 +55,24 @@ def submit_cadastro_user(request):
 
 @login_required(login_url='/login/')
 def minha_pagina(request):
+    context = {}
     usuario = request.user
-    return render(request, 'minha-pagina.html', {'usuario': usuario})
+    publicacoes = Publicacao.objects.filter(autor=usuario)
+    context['publicacoes'] = publicacoes
+    context['usuario'] = usuario
+    return render(request, 'minha-pagina.html', context)
+
+@login_required(login_url='/login/')
+def escrever_publicacao(request):
+    context = {}
+    usuario = request.user
+    form = editorForm(request.POST or None)
+    context['usuario'] = usuario
+    context['form'] = form
+    if request.POST:
+        if form.is_valid():
+            objeto = form.save(commit=False)
+            objeto.autor = usuario
+            objeto.save()
+            return redirect('/minha_pagina/')
+    return render(request, 'escrever-publicacao.html', context)

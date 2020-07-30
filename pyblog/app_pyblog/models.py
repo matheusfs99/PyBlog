@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Publicacao(models.Model):
@@ -8,7 +9,7 @@ class Publicacao(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.CharField(max_length=300, blank=True, null=True)
     imagem = models.ImageField(upload_to='imagem_publicacao/', blank=True, null=True)
-    texto = models.TextField()
+    post = RichTextField(blank=True, null=True)
 
     class Meta:
         db_table = 'tbl_publicacao'

@@ -9,6 +9,20 @@
 
 {% block content %}
 
-
+<div class="conteudo">
+    <h3>Minhas Publicações</h3>
+    {% if publicacoes %}
+    {% for publicacao in publicacoes %}
+    <ul>
+        <li>{{ publicacao.titulo }} - {{ publicacao.data_publicacao }}</li>
+    </ul>
+    {% endfor %}
+    {% else %}
+    <p>Você não tem nenhuma publicação</p>
+    {% endif %}
+    <a href="/escrever_publicacao">
+        <button class="btn btn-primary">Escrever publicação</button>
+    </a>
+</div>
 
 {% endblock %}

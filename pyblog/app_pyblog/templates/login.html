@@ -1,0 +1,28 @@
+{% extends "model-page.html" %}
+
+{% block btn_nav %}
+<button class="btn btn-outline-secondary my-2 my-sm-0">Cadastre-se</button>
+{% endblock %}
+
+{% block content %}
+<div class="login-form" align="center">
+    <h2>Faça seu login</h2>
+    <form action="submit" method="POST">
+        {% csrf_token %}
+        <div align="center">
+            <input type="text" name="username" class="form-control" placeholder="Usuário" style="margin-bottom: 10px;"/>
+            <input type="password" name="password" class="form-control" placeholder="Senha"/><br>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </div>
+    </form>
+</div>
+
+
+{% for message in messages %}
+<br>
+<div align="center" class="alert alert-danger">
+    <strong>Erro - </strong>{{ message }}
+</div>
+{% endfor %}
+
+{% endblock %}

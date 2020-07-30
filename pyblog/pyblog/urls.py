@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from app_pyblog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index),
+    path('login/', views.login_user),
+    path('logout/', views.logout_user),
+    path('login/submit', views.submit_login),
+    path('minha_pagina/', views.minha_pagina),
+
 ]

@@ -1,19 +1,23 @@
 {% extends "model-page.html" %}
 
 {% block btn_nav %}
-<a href="/cadastro/">
-    <button class="btn btn-outline-secondary my-2 my-sm-0">Cadastre-se</button>
+<a href="/login/">
+    <button class="btn btn-outline-success my-2 my-sm-0">Fazer Login</button>
 </a>
+
 {% endblock %}
 
 {% block content %}
 <div class="login-form" align="center">
-    <h2>Faça seu login</h2>
+    <h2>Cadastre-se</h2>
     <form action="submit" method="POST">
         {% csrf_token %}
         <div align="center">
+            <input type="text" name="first_name" class="form-control" placeholder="Nome" style="margin-bottom: 10px;"/>
+            <input type="text" name="last_name" class="form-control" placeholder="Sobrenome" style="margin-bottom: 10px;"/>
             <input type="text" name="username" class="form-control" placeholder="Usuário" style="margin-bottom: 10px;"/>
-            <input type="password" name="password" class="form-control" placeholder="Senha"/><br>
+            <input type="email" name="email" class="form-control" placeholder="Email" style="margin-bottom: 10px;"/>
+            <input type="password" name="password" class="form-control" placeholder="Senha" style="margin-bottom: 10px;"/>
             <button type="submit" class="btn btn-primary">Entrar</button>
         </div>
     </form>

@@ -1,7 +1,7 @@
 {% extends "model-page.html" %}
 
 {% block btn_nav %}
-{{ usuario.username }}
+{{ usuario.first_name }} {{ usuario.last_name }}
 <a href="/logout">
     <button class="btn btn-outline-danger my-2 my-sm-0" style="margin-right: 10px; margin-left: 10px;">Sair</button>
 </a>

@@ -1,0 +1,13 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+<a href="#" style="margin-left: 100px;">Editar publicação</a>
+<div align="center">
+    <h1>{{ publicacao.titulo }}</h1>
+    <p class="descricao">{{ publicacao.descricao }}</p>
+    <span>Publicado por: {{ publicacao.autor }}</span>
+</div>
+<div class="conteudo">
+    <p>{{ publicacao.post|safe }}</p>
+</div>
+{% endblock %}

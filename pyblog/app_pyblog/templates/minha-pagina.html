@@ -15,6 +15,7 @@
     {% for post in publicacoes %}
     <ul>
         <li>{{ post.titulo }} - {{ post.data_publicacao }}</li>
+        <a href="{% url 'publicacao' post.id %}">Visualizar post</a>
     </ul>
     {% endfor %}
     {% else %}

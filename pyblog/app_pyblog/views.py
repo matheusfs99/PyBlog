@@ -76,3 +76,11 @@ def escrever_publicacao(request):
             objeto.save()
             return redirect('/minha_pagina/')
     return render(request, 'escrever-publicacao.html', context)
+
+@login_required(login_url='/login/')
+def publicacao(request, id_publicacao):
+    context = {}
+    publicacao = Publicacao.objects.get(id=id_publicacao)
+    if publicacao:
+        context['publicacao'] = publicacao
+    return render(request, 'publicacao.html', context)

@@ -10,18 +10,18 @@
 {% block content %}
 
 <div class="conteudo">
-    <h3>Minhas Publicações</h3>
+    <h3>Meus Posts</h3>
     {% if publicacoes %}
-    {% for publicacao in publicacoes %}
+    {% for post in publicacoes %}
     <ul>
-        <li>{{ publicacao.titulo }} - {{ publicacao.data_publicacao }}</li>
+        <li>{{ post.titulo }} - {{ post.data_publicacao }}</li>
     </ul>
     {% endfor %}
     {% else %}
-    <p>Você não tem nenhuma publicação</p>
+    <p>Você não tem nenhum post</p>
     {% endif %}
     <a href="/escrever_publicacao">
-        <button class="btn btn-primary">Escrever publicação</button>
+        <button class="btn btn-primary">Escrever novo post</button>
     </a>
 </div>
 

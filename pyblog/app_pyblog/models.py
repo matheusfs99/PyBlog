@@ -6,8 +6,8 @@ from ckeditor.fields import RichTextField
 class Publicacao(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     data_publicacao = models.DateTimeField(verbose_name='Data da Publicação', auto_now=True)
-    titulo = models.CharField(max_length=100)
-    descricao = models.CharField(max_length=300, blank=True, null=True)
+    titulo = models.CharField(max_length=100, verbose_name='Título')
+    descricao = models.CharField(max_length=300, blank=True, null=True, verbose_name='Descrição')
     imagem = models.ImageField(upload_to='imagem_publicacao/', blank=True, null=True)
     post = RichTextField(blank=True, null=True)
 

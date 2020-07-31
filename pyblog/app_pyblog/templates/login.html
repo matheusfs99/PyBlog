@@ -1,12 +1,27 @@
-{% extends "model-page.html" %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "model-header.html" %}
+</head>
+<body>
 
-{% block btn_nav %}
-<a href="/cadastro/">
-    <button class="btn btn-outline-secondary my-2 my-sm-0">Cadastre-se</button>
-</a>
-{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <h4 style="margin-right: 30px;">PyBlog</h4>
+        <ul class="navbar-nav mr-auto">
 
-{% block content %}
+        </ul>
+
+        <div class="form-inline my-2 my-lg-0">
+            <a href="/cadastro/">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" style="margin-right: 10px; margin-left: 10px;">
+                    Cadastre-se
+                </button>
+            </a>
+        </div>
+    </div>
+</nav>
+
 <div class="login-form" align="center">
     <h2>Faça seu login</h2>
     <form action="submit" method="POST">
@@ -27,4 +42,9 @@
 </div>
 {% endfor %}
 
-{% endblock %}
+<footer align="center">
+    {% include "model-footer.html" %}
+</footer>
+
+</body>
+</html>

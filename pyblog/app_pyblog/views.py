@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import *
+
 
 # Create your views here.
 
@@ -15,9 +16,11 @@ def index(request):
     context['usuario'] = usuario
     return render(request, 'index.html', context)
 
+
 def logout_user(request):
     logout(request)
     return redirect('/')
+
 
 def submit_login(request):
     if request.POST:
@@ -31,8 +34,10 @@ def submit_login(request):
             messages.error(request, 'Usuário e/ou senha inválida')
     return redirect('/')
 
+
 def cadastrar_user(request):
     return render(request, 'cadastrar-usuario.html')
+
 
 def submit_cadastro_user(request):
     if request.POST:
@@ -55,10 +60,12 @@ def submit_cadastro_user(request):
         else:
             messages.error(request, 'Preencha todos os campos')
 
+
 @login_required(login_url='/')
 def editar_perfil(request):
     usuario = request.user
     return render(request, 'editar-perfil.html', {'usuario': usuario})
+
 
 @login_required(login_url='/')
 def submit_editar_perfil(request):
@@ -74,6 +81,7 @@ def submit_editar_perfil(request):
                                                   email=email)
         return redirect('/minha_pagina/')
 
+
 @login_required(login_url='/')
 def minha_pagina(request):
     context = {}
@@ -82,6 +90,7 @@ def minha_pagina(request):
     context['publicacoes'] = publicacoes
     context['usuario'] = usuario
     return render(request, 'minha-pagina.html', context)
+
 
 @login_required(login_url='/')
 def escrever_publicacao(request):
@@ -98,7 +107,7 @@ def escrever_publicacao(request):
             return redirect('/minha_pagina/')
     return render(request, 'escrever-publicacao.html', context)
 
-@login_required(login_url='/')
+
 def publicacao(request, titulo_publicacao):
     context = {}
     usuario = request.user
@@ -108,3 +117,15 @@ def publicacao(request, titulo_publicacao):
         if usuario:
             context['usuario'] = usuario
     return render(request, 'publicacao.html', context)
+
+
+def comentar_publicacao(request, titulo_publicacao):
+    if request.POST:
+        nome = request.POST.get('nome')
+        id_publicacao = request.POST.get('id_publicacao')
+        comentario = request.POST.get('comentario')
+        if comentario is not None:
+            Comentarios.objects.create(nome=nome,
+                                       comentario=comentario,
+                                       publicacao= get_object_or_404(Publicacao, id=id_publicacao))
+    return redirect(f'/publicacao/{titulo_publicacao}/#comentarios')

@@ -15,9 +15,13 @@ class Publicacao(models.Model):
         db_table = 'tbl_publicacao'
 
 class Comentarios(models.Model):
+    nome = models.CharField(max_length=50, blank=True, null=True)
     comentario = models.CharField(max_length=300, blank=True, null=True)
     data_comentario = models.DateTimeField(verbose_name='Data do Comentário', auto_now=True)
-    publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
+    publicacao = models.ForeignKey(Publicacao, related_name='comments', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_comentarios'
+
+    def get_data_comentario(self):
+        return self.data_comentario.strftime('%d/%m/%Y %H:%Mh')

@@ -8,7 +8,10 @@ from .forms import *
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    context = {}
+    publicacoes = Publicacao.objects.all().order_by('-data_publicacao')[:6]
+    context['publicacoes'] = publicacoes
+    return render(request, 'index.html', context)
 
 def login_user(request):
     return render(request, 'login.html')

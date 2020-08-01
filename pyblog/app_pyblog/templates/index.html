@@ -27,7 +27,53 @@
     </div>
 </nav>
 
-{% block content %} {% endblock %}
+<section>
+    <div align="center" class="conteudo">
+        <h1>PyBlog</h1><br>
+        <h3>
+            Blog dedicado à linguagem de programação Python e todas as tecnologias de desenvolvimento em Python,
+            como frameworks, bibliotecas etc.
+        </h3><br><br>
+        <p>
+            Este blog não é só pra você ler publicações. É livre pra quem quiser escrever um artigo, publicar um post
+            sobre qualquer coisa relacionada à linguagem Pyhton. Faça seu cadastro e começe a escrever e compartilhar
+            seu conhecimento com outras pessoas.
+        </p>
+    </div>
+</section>
+
+<section id="publicacoes">
+    <div class="conteudo">
+        <h2>Publicações</h2>
+
+
+        <div class="row row-cols-2">
+            {% for publicacao in publicacoes %}
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            {% load static %}
+                            <img src="{% static 'img/tecnologias/python.png' %}" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ publicacao.titulo }}</h5>
+                                <p class="card-text">{{ publicacao.descricao }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        Publicado por: {{ publicacao.autor }}<br>{{ publicacao.data_publicacao }}
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 
 <footer align="center">
     {% include "model-footer.html" %}

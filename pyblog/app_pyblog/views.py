@@ -55,7 +55,26 @@ def submit_cadastro_user(request):
         else:
             messages.error(request, 'Preencha todos os campos')
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
+def editar_perfil(request):
+    usuario = request.user
+    return render(request, 'editar-perfil.html', {'usuario': usuario})
+
+@login_required(login_url='/')
+def submit_editar_perfil(request):
+    if request.POST:
+        usuario = request.user
+        nome = request.POST.get('first_name')
+        sobrenome = request.POST.get('last_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        User.objects.filter(id=usuario.id).update(first_name=nome,
+                                                  last_name=sobrenome,
+                                                  username=username,
+                                                  email=email)
+        return redirect('/minha_pagina/')
+
+@login_required(login_url='/')
 def minha_pagina(request):
     context = {}
     usuario = request.user
@@ -64,7 +83,7 @@ def minha_pagina(request):
     context['usuario'] = usuario
     return render(request, 'minha-pagina.html', context)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def escrever_publicacao(request):
     context = {}
     usuario = request.user
@@ -79,10 +98,13 @@ def escrever_publicacao(request):
             return redirect('/minha_pagina/')
     return render(request, 'escrever-publicacao.html', context)
 
-@login_required(login_url='/login/')
-def publicacao(request, id_publicacao):
+@login_required(login_url='/')
+def publicacao(request, titulo_publicacao):
     context = {}
-    publicacao = Publicacao.objects.get(id=id_publicacao)
+    usuario = request.user
+    publicacao = Publicacao.objects.get(titulo=titulo_publicacao)
     if publicacao:
         context['publicacao'] = publicacao
+        if usuario:
+            context['usuario'] = usuario
     return render(request, 'publicacao.html', context)

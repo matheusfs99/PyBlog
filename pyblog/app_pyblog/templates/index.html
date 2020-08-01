@@ -36,7 +36,9 @@
                                 <p class="card-text">{{ publicacao.descricao }}</p>
                                 <p class="card-text">
                                     <small class="text-muted">
-                                        Publicado por: {{ publicacao.autor }}<br>{{ publicacao.data_publicacao }}
+                                        Publicado por: {{ publicacao.autor.first_name }} {{ publicacao.autor.last_name }}
+                                        <br>
+                                        {{ publicacao.data_publicacao }}
                                     </small>
                                 </p>
                             </div>

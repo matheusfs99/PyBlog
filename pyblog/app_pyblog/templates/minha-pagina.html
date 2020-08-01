@@ -1,12 +1,5 @@
 {% extends "model-page.html" %}
 
-{% block btn_nav %}
-{{ usuario.first_name }} {{ usuario.last_name }}
-<a href="/logout">
-    <button class="btn btn-outline-danger my-2 my-sm-0" style="margin-right: 10px; margin-left: 10px;">Sair</button>
-</a>
-{% endblock %}
-
 {% block content %}
 
 <div class="conteudo">
@@ -15,7 +8,7 @@
     {% for post in publicacoes %}
     <ul>
         <li>{{ post.titulo }} - {{ post.data_publicacao }}</li>
-        <a href="{% url 'publicacao' post.id %}">Visualizar post</a>
+        <a href="{% url 'publicacao' post.titulo %}">Visualizar post</a>
     </ul>
     {% endfor %}
     {% else %}

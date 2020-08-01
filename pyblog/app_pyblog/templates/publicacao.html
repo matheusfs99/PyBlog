@@ -5,9 +5,10 @@
 <div align="center">
     <h1>{{ publicacao.titulo }}</h1>
     <p class="descricao">{{ publicacao.descricao }}</p>
-    <span>Publicado por: {{ publicacao.autor }}</span>
+    <span>Publicado por: {{ publicacao.autor.first_name }} {{ publicacao.autor.last_name }}</span>
 </div>
 <div class="conteudo">
     <p>{{ publicacao.post|safe }}</p>
 </div>
+
 {% endblock %}

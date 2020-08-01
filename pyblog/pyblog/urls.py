@@ -26,5 +26,7 @@ urlpatterns = [
     path('cadastro/submit', views.submit_cadastro_user),
     path('minha_pagina/', views.minha_pagina),
     path('escrever_publicacao/', views.escrever_publicacao),
-    path('publicacao/<int:id_publicacao>/', views.publicacao, name='publicacao'),
+    path('publicacao/<titulo_publicacao>/', views.publicacao, name='publicacao'),
+    path('editar_perfil/', views.editar_perfil),
+    path('editar_perfil/submit', views.submit_editar_perfil),
 ]

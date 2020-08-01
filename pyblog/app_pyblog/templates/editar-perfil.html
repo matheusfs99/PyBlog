@@ -1,0 +1,28 @@
+{% extends 'model-page.html' %}
+
+{% block content %}
+
+<div class="conteudo" align="center">
+    <h2>Editar Perfil</h2>
+    <form action="submit" method="POST">
+        {% csrf_token %}
+        <div align="left" style="margin-left: 350px; margin-right: 350px;">
+            <label>Nome:</label>
+            <input type="text" name="first_name" class="form-control" placeholder="Nome"
+                   value="{{ usuario.first_name }}" style="margin-bottom: 10px;"/>
+            <label>Sobrenome:</label>
+            <input type="text" name="last_name" class="form-control" placeholder="Sobrenome"
+                   value="{{ usuario.last_name }}" style="margin-bottom: 10px;"/>
+            <label>Usuário:</label>
+            <input type="text" name="username" class="form-control" placeholder="Usuário"
+                   value="{{ usuario.username }}" style="margin-bottom: 10px;"/>
+            <label>Email:</label>
+            <input type="email" name="email" class="form-control" placeholder="Email"
+                   value="{{ usuario.email }}" style="margin-bottom: 10px;"/>
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a href="/minha_pagina" class="btn btn-danger">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

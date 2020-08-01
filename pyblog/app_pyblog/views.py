@@ -9,8 +9,10 @@ from .forms import *
 
 def index(request):
     context = {}
+    usuario = request.user
     publicacoes = Publicacao.objects.all().order_by('-data_publicacao')[:6]
     context['publicacoes'] = publicacoes
+    context['usuario'] = usuario
     return render(request, 'index.html', context)
 
 def login_user(request):

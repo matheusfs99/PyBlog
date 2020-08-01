@@ -20,9 +20,8 @@ from app_pyblog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('login/', views.login_user),
+    path('submit', views.submit_login),
     path('logout/', views.logout_user),
-    path('login/submit', views.submit_login),
     path('cadastro/', views.cadastrar_user),
     path('cadastro/submit', views.submit_cadastro_user),
     path('minha_pagina/', views.minha_pagina),

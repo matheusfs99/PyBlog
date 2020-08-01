@@ -15,9 +15,6 @@ def index(request):
     context['usuario'] = usuario
     return render(request, 'index.html', context)
 
-def login_user(request):
-    return render(request, 'login.html')
-
 def logout_user(request):
     logout(request)
     return redirect('/')
@@ -32,7 +29,7 @@ def submit_login(request):
             return redirect('/minha_pagina/')
         else:
             messages.error(request, 'Usuário e/ou senha inválida')
-    return redirect('/login/')
+    return redirect('/')
 
 def cadastrar_user(request):
     return render(request, 'cadastrar-usuario.html')

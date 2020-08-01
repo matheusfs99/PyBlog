@@ -24,18 +24,46 @@
 
         <div class="form-inline my-2 my-lg-0">
             {% if usuario.is_authenticated %}
-            {{ usuario.first_name }} {{ usuario.last_name }}
-            <a href="/logout/">
-                <button class="btn btn-outline-danger my-2 my-sm-0" style="margin-right: 10px; margin-left: 10px;">
-                    Sair
+            <div class="dropdown">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ usuario.first_name }} {{ usuario.last_name }}
                 </button>
-            </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Editar Perfil</a>
+                    <a class="dropdown-item" href="/logout/" style="color: red">Sair</a>
+                </div>
+            </div>
             {% else %}
-            <a href="/login/">
-                <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px; margin-left: 10px;">
+            <div class="dropdown">
+                <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownLoginButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Fazer Login
                 </button>
-            </a>
+                <form class="dropdown-menu p-4" action="submit" method="post">
+                    {% csrf_token %}
+                    <h4>Faça seu login</h4>
+                    <div class="form-group">
+                        <label>Usuário</label>
+                        <input type="text" name="username" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" name="password" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                            <label class="form-check-label" for="dropdownCheck2">
+                                Lembrar-me
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </form>
+
+            </div>
+
             <a href="/cadastro/">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" style="margin-right: 10px; margin-left: 10px;">
                     Cadastre-se

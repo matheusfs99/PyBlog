@@ -8,7 +8,7 @@ class Publicacao(models.Model):
     data_publicacao = models.DateTimeField(verbose_name='Data da Publicação', auto_now=True)
     titulo = models.CharField(max_length=100, verbose_name='Título')
     descricao = models.CharField(max_length=300, blank=True, null=True, verbose_name='Descrição')
-    imagem = models.ImageField(upload_to='imagem_publicacao/', blank=True, null=True)
+    imagem = models.ImageField(upload_to='img_post/', blank=True, null=True)
     post = RichTextField(blank=True, null=True)
 
     class Meta:

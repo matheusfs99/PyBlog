@@ -96,7 +96,7 @@ def minha_pagina(request):
 def escrever_publicacao(request):
     context = {}
     usuario = request.user
-    form = editorForm(request.POST or None)
+    form = editorForm(request.POST or None, request.FILES)
     context['usuario'] = usuario
     context['form'] = form
     if request.POST:

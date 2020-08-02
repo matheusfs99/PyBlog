@@ -3,7 +3,7 @@
 {% block content %}
 <div class="write_post" align="center">
     <h2>Escreva sua Publicação</h2>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div align="left">
             {{ form.media }}

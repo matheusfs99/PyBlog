@@ -5,18 +5,23 @@
 <div class="conteudo">
     <h3>Meus Posts</h3>
     {% if publicacoes %}
-    {% for post in publicacoes %}
-    <ul>
-        <li>{{ post.titulo }} - {{ post.data_publicacao }}</li>
-        <a href="{% url 'publicacao' post.titulo %}">Visualizar post</a>
-    </ul>
-    {% endfor %}
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for post in publicacoes %}
+        <div class="col mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.titulo }}</h5>
+                    <p class="card-text">{{ post.descricao }}</p>
+                    <p>{{ post.data_publicacao }}</p>
+                    <a href="{% url 'publicacao' post.titulo %}">Visualizar post</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     {% else %}
     <p>Você não tem nenhum post</p>
     {% endif %}
-    <a href="/escrever_publicacao">
-        <button class="btn btn-primary">Escrever novo post</button>
-    </a>
 </div>
 
 {% endblock %}

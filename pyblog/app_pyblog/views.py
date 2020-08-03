@@ -14,6 +14,8 @@ def index(request):
     publicacoes = Publicacao.objects.all().order_by('-data_publicacao')[:6]
     context['publicacoes'] = publicacoes
     context['usuario'] = usuario
+    eventos = Eventos.objects.all().order_by('-data_criacao')[:3]
+    context['eventos'] = eventos
     return render(request, 'index.html', context)
 
 
@@ -129,3 +131,41 @@ def comentar_publicacao(request, titulo_publicacao):
                                        comentario=comentario,
                                        publicacao= get_object_or_404(Publicacao, id=id_publicacao))
     return redirect(f'/publicacao/{titulo_publicacao}/#comentarios')
+
+
+@login_required(login_url='/login/')
+def criar_evento(request):
+    usuario = request.user
+    return render(request, 'criar-evento.html', {'usuario': usuario})
+
+
+@login_required(login_url='/login/')
+def submit_criar_evento(request):
+    usuario = request.user
+    titulo = request.POST.get('titulo')
+    descricao = request.POST.get('descricao')
+    data_inicio = request.POST.get('data_inicio')
+    data_fim = request.POST.get('data_fim')
+    local = request.POST.get('local')
+    organizador = request.POST.get('organizador')
+    if request.POST:
+        Eventos.objects.create(titulo=titulo,
+                               descricao=descricao,
+                               data_inicio=data_inicio,
+                               data_fim=data_fim,
+                               local=local,
+                               organizador=organizador,
+                               criado_por=usuario)
+    return redirect('/eventos')
+
+
+def eventos(request):
+    context = {}
+    usuario = request.user
+    eventos = Eventos.objects.all().order_by('-data_criacao')
+    context['usuario'] = usuario
+    context['eventos'] = eventos
+    if usuario.is_authenticated:
+        meus_eventos = Eventos.objects.filter(criado_por=usuario).order_by('-data_criacao')
+        context['meus_eventos'] = meus_eventos
+    return render(request, 'eventos.html', context)

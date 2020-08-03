@@ -1,0 +1,46 @@
+{% extends 'model-page.html' %}
+
+{% block content %}
+<div class="conteudo">
+    {% if usuario.is_authenticated %}
+    <h3>Meus Eventos</h3>
+
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for evento in meus_eventos %}
+        <div class="col mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ evento.titulo }}</h5>
+                    <p class="card-text">De {{ evento.get_data_inicio }} à {{ evento.get_data_fim }}</p>
+                    <div align="center">
+                        <button class="btn btn-outline-info">Ver detalhes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% else %}
+<h3>Eventos</h3>
+<div class="row row-cols-1 row-cols-md-3">
+    {% for evento in eventos %}
+    <div class="col mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ evento.titulo }}</h5>
+                <p class="card-text">De {{ evento.get_data_inicio }} à {{ evento.get_data_fim }}</p>
+                <p class="card-text">Organizado por: {{ evento.organizador }}</p>
+                <div align="center">
+                    <button class="btn btn-outline-info">Ver detalhes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+{% endblock %}

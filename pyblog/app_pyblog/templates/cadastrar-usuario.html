@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    {% include "model-header.html" %}
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <h4 style="margin-right: 30px;">PyBlog</h4>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Página Inicial</a>
-            </li>
-        </ul>
-
-        <div class="form-inline my-2 my-lg-0">
-            <a href="/login/">
-                <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px; margin-left: 10px;">
-                    Fazer Login
-                </button>
-            </a>
-        </div>
-    </div>
-</nav>
-
+{% extends 'model-page.html' %}
+{% block content %}
 <div class="login-form" align="center">
     <h2>Cadastre-se</h2>
     <form action="submit" method="POST">
@@ -34,7 +10,7 @@
             <input type="text" name="username" class="form-control" placeholder="Usuário" style="margin-bottom: 10px;"/>
             <input type="email" name="email" class="form-control" placeholder="Email" style="margin-bottom: 10px;"/>
             <input type="password" name="password" class="form-control" placeholder="Senha" style="margin-bottom: 10px;"/>
-            <button type="submit" class="btn btn-primary">Entrar</button>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
         </div>
     </form>
 </div>
@@ -47,9 +23,4 @@
 </div>
 {% endfor %}
 
-<footer align="center">
-    {% include "model-footer.html" %}
-</footer>
-
-</body>
-</html>
+{% endblock %}

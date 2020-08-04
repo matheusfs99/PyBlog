@@ -148,13 +148,15 @@ def submit_criar_evento(request):
     data_fim = request.POST.get('data_fim')
     local = request.POST.get('local')
     organizador = request.POST.get('organizador')
-    if request.POST:
+    imagem = request.POST.get('imagem')
+    if request.POST or request.FILES:
         Eventos.objects.create(titulo=titulo,
                                descricao=descricao,
                                data_inicio=data_inicio,
                                data_fim=data_fim,
                                local=local,
                                organizador=organizador,
+                               imagem=imagem,
                                criado_por=usuario)
     return redirect('/eventos')
 

@@ -35,6 +35,7 @@ class Eventos(models.Model):
     organizador = models.CharField(max_length=100)
     criado_por = models.ForeignKey(User, on_delete=models.CASCADE)
     data_criacao = models.DateTimeField(auto_now=True)
+    imagem = models.ImageField(upload_to='img_eventos/', blank=True, null=True)
 
     class Meta:
         db_table = 'tbl_eventos'

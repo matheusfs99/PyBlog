@@ -14,6 +14,8 @@
                     <p class="card-text">{{ post.descricao }}</p>
                     <p>{{ post.data_publicacao }}</p>
                     <a href="{% url 'publicacao' post.titulo %}">Visualizar post</a>
+                    <label style="margin-left:150px;">{{ post.comments.count }}</label>
+                    <i class="fas fa-comment"></i>
                 </div>
             </div>
         </div>

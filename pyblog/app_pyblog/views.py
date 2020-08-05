@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import *
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -11,7 +12,10 @@ from .forms import *
 def index(request):
     context = {}
     usuario = request.user
-    publicacoes = Publicacao.objects.all().order_by('-data_publicacao')[:6]
+    publicacoes_list = Publicacao.objects.all().order_by('-data_publicacao')
+    paginator = Paginator(publicacoes_list, 6)
+    page = request.GET.get('page')
+    publicacoes = paginator.get_page(page)
     context['publicacoes'] = publicacoes
     context['usuario'] = usuario
     return render(request, 'index.html', context)
@@ -96,7 +100,7 @@ def minha_pagina(request):
 def escrever_publicacao(request):
     context = {}
     usuario = request.user
-    form = editorForm(request.POST or None, request.FILES)
+    form = editorForm(request.POST or None, request.FILES or None)
     context['usuario'] = usuario
     context['form'] = form
     if request.POST:

@@ -55,7 +55,31 @@
             </div>
             {% endfor %}
         </div>
+        <div align="center">
+            <ul class="pagination">
+                {% if publicacoes.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ publicacoes.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        {{ publicacoes.number }} de {{ publicacoes.paginator.num_pages }}
+                    </a>
+                </li>
+                {% if publicacoes.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ publicacoes.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
+
 </section>
 
 {% endblock %}

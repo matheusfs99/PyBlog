@@ -14,8 +14,6 @@ def index(request):
     publicacoes = Publicacao.objects.all().order_by('-data_publicacao')[:6]
     context['publicacoes'] = publicacoes
     context['usuario'] = usuario
-    eventos = Eventos.objects.all().order_by('-data_criacao')[:3]
-    context['eventos'] = eventos
     return render(request, 'index.html', context)
 
 

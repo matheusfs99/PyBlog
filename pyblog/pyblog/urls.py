@@ -32,9 +32,6 @@ urlpatterns = [
     path('publicacao/<titulo_publicacao>/send_comment', views.comentar_publicacao),
     path('editar_perfil/', views.editar_perfil),
     path('editar_perfil/submit', views.submit_editar_perfil),
-    path('criar_evento/', views.criar_evento),
-    path('criar_evento/submit', views.submit_criar_evento),
-    path('eventos/', views.eventos)
 ]
 
 if settings.DEBUG:

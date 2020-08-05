@@ -25,23 +25,3 @@ class Comentarios(models.Model):
 
     def get_data_comentario(self):
         return self.data_comentario.strftime('%d/%m/%Y %H:%Mh')
-
-class Eventos(models.Model):
-    titulo = models.CharField(max_length=100)
-    data_inicio = models.DateTimeField()
-    data_fim = models.DateTimeField()
-    descricao = models.TextField()
-    local = models.CharField(max_length=200)
-    organizador = models.CharField(max_length=100)
-    criado_por = models.ForeignKey(User, on_delete=models.CASCADE)
-    data_criacao = models.DateTimeField(auto_now=True)
-    imagem = models.ImageField(upload_to='img_eventos/', blank=True, null=True)
-
-    class Meta:
-        db_table = 'tbl_eventos'
-
-    def get_data_inicio(self):
-        return self.data_inicio.strftime('%d/%m/%Y')
-
-    def get_data_fim(self):
-        return self.data_fim.strftime('%d/%m/%Y')

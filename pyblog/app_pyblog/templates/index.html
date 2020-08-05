@@ -55,24 +55,6 @@
             </div>
             {% endfor %}
         </div>
-
-        <h2>Eventos</h2>
-        <div class="row row-cols-1 row-cols-md-3">
-            {% for evento in eventos %}
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ evento.titulo }}</h5>
-                        <p>De {{ evento.get_data_inicio }} à {{ evento.get_data_fim }}</p>
-                        <p class="card-text">Organizado por: {{ evento.organizador }}</p>
-                        <div align="center">
-                            <button class="btn btn-outline-info">Ver detalhes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
     </div>
 </section>
 

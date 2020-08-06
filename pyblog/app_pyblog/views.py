@@ -12,7 +12,11 @@ from django.core.paginator import Paginator
 def index(request):
     context = {}
     usuario = request.user
-    publicacoes_list = Publicacao.objects.all().order_by('-data_publicacao')
+    search = request.GET.get('search')
+    if search:
+        publicacoes_list = Publicacao.objects.filter(titulo__icontains=search).order_by('-data_publicacao')
+    else:
+        publicacoes_list = Publicacao.objects.all().order_by('-data_publicacao')
     paginator = Paginator(publicacoes_list, 6)
     page = request.GET.get('page')
     publicacoes = paginator.get_page(page)
@@ -90,7 +94,14 @@ def submit_editar_perfil(request):
 def minha_pagina(request):
     context = {}
     usuario = request.user
-    publicacoes = Publicacao.objects.filter(autor=usuario)
+    search = request.GET.get('search')
+    if search:
+        publicacoes_list = Publicacao.objects.filter(titulo__icontains=search).order_by('-data_publicacao')
+    else:
+        publicacoes_list = Publicacao.objects.filter(autor=usuario).order_by('-data_publicacao')
+    paginator = Paginator(publicacoes_list, 6)
+    page = request.GET.get('page')
+    publicacoes = paginator.get_page(page)
     context['publicacoes'] = publicacoes
     context['usuario'] = usuario
     return render(request, 'minha-pagina.html', context)
